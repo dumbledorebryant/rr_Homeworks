@@ -17,3 +17,4 @@ We create ConsumerDemo class, setting some important parameters:
 kafkaConsumer.subscribe(Arrays.asList("test"));  
 And we get all the message from the topic 'test':  
 ![Image 1](/Homework3/pics/ctest.jpg)
+# See code in the folder KafkaProj!

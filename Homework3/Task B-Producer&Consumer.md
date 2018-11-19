@@ -4,7 +4,7 @@ First, we create a topic named 'test'.
 Then we start the zookeeper server and the Kafka server.
 # Producer Demo
 Using the Apache Kafka Java Client API, we have to modify the pom.xml, adding  
-![M](/Homework3/pics/dependency.jpg)
+![M](/Homework3/pics/dependency.jpg)  
 Then create ProducerDemo class, setting some important parameters:   
 properties.put("bootstrap.servers", "192.168.1.110:9092");    
 and send a message to the topic test:  

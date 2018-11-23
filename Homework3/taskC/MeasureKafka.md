@@ -46,12 +46,12 @@ ___
 
 Testing Result of Consumer:
 =================
-![center](consumerTest.png)
+![center](taskC_pics/consumerTest.png)
 ___
 
 Testing Result of Consumer:
 =================
-![center](consumerDetailedTest.png)
+![center](taskC_pics/consumerDetailedTest.png)
 ___
 
 Testing Producer:
@@ -68,17 +68,17 @@ ___
 
 Testing Result of Producer:
 =================
-![center](ProducerTest.png)
+![center](taskC_pics/ProducerTest.png)
 ___
 
 Testing Result of Producer:
 =================
-![center](ProducerDetailedTest.png)
+![center](taskC_pics/ProducerDetailedTest.png)
 ___
 
 Testing Result of Producer:
 =================
-![center](ProducerHelp.png)
+![center](taskC_pics/ProducerHelp.png)
 ___
 
 Test Analyzing

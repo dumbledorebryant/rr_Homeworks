@@ -54,13 +54,13 @@ ___
 Test Result：
 ============
 ## Directly IO to Disk
-![center](IO_ToDisk.png)
+![center](taskA_pics/IO_ToDisk.png)
 ___
 
 Test Result：
 ============
 ## Directly IO to Memory
-![center](IO_ToMemory.png)
+![center](taskA_pics/IO_ToMemory.png)
 ___
 
 Test Tools：
@@ -72,7 +72,7 @@ ___
 Test Result：
 ============
 ## Directly IO to Disk
-![60% center](networkTest.png)
+![60% center](taskA_pics/networkTest.png)
 ___
 
 Test Analyzing：

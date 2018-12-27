@@ -30,14 +30,14 @@ First, we need to get the cgroup-driver of docker, which shoul be the same as th
 ```
 docker info | grep -i cgroup
 ``` 
-The out put is 
+The output is 
 ```
 Cgroup Driver: cgroupfs
 ```
 So we nend to modify the 10-kubeadm.conf.
-Since the download speed is too slow, I take every measures to get images from domestic.  
-Finally, I've found one packed in 'images.tar'.
 ### Load images into docker
+Since the download speed is too slow, I take every measures to get images from domestic.  
+Finally, I've found one packed in 'images.tar'.  
 By typing:
 ```
 docker load -i ../images/images.tar

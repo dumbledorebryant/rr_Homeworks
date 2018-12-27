@@ -3,7 +3,7 @@
 > 
 > * ### ***Ubuntu 16.04 LTS*** 
 ## Preparation
-We need to disable selinux and firewall before building up kubernetes.  
+We need to disable selinux and firewall before building up kubernetes. Swap also needs to be disabled.  
 ```
 systemctl stop firewalld && systemctl disable firewalld
 swapoff -a
@@ -16,12 +16,14 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
 ```
-Finally, we need to install docker.  
+Next, we need to install docker.  
 For me, I installed docker with apt-get:
 ```
 sudo apt-get install docker
 sudo apt-get install docker.io
 ```
+Finally, since the mirrors are from google, we need to deal with the GFW.  
+Relevant jobs are omitted.
 ## Install kubeadm and kubelet
 ### Configuration for kubeadm
 We just need to write configuration into kubeadm.conf, just as following:
@@ -40,6 +42,18 @@ ExecStart=
 ExecStart=/usr/bin/kubelet \$KUBELET_KUBECONFIG_ARGS \$KUBELET_SYSTEM_PODS_ARGS \$KUBELET_NETWORK_ARGS \$KUBELET_DNS_ARGS \$KUBELET_AUTHZ_ARGS \$KUBELET_CADVISOR_ARGS \$KUBELET_CGROUP_ARGS \$KUBELET_CERTIFICATE_ARGS \$KUBELET_EXTRA_ARGS
 EOF
 ```
+# DNS & Dashboard
+## Dashboard
+And we've started the dashboard service. Visit https://127.0.0.1:32000, and we need to  
+input token to sign in. By typing:
+```
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep kubernetes-dashboard-token|awk '{print $1}')|grep token:|awk "{print $2}"
+
+```
+And we've got the token:
+![Img](pics/token.jpg)
+After inputing the token and signing in, we can see the dashboard:
+![Img](pics/dashboard.jpg)
 # Snapshot
 After all the above, we've got a kubernetes networkd with one master node.  
 ```

@@ -24,7 +24,25 @@ sudo apt-get install docker.io
 ```
 Finally, since the mirrors are from google, we need to deal with the GFW.  
 Relevant jobs are omitted.
-## Install kubeadm and kubelet
+## Kubernetes Installation
+### Preparation
+First, we need to get the cgroup-driver of docker, which shoul be the same as the environment variety of kubeadm. Typing:
+```
+docker info | grep -i cgroup
+``` 
+The out put is 
+```
+Cgroup Driver: cgroupfs
+```
+So we nend to modify the 10-kubeadm.conf.
+Since the download speed is too slow, I take every measures to get images from domestic.  
+Finally, I've found one packed in 'images.tar'.
+### Load images into docker
+By typing:
+```
+docker load -i ../images/images.tar
+```
+The outputs are omitted here.
 ### Configuration for kubeadm
 We just need to write configuration into kubeadm.conf, just as following:
 ```
@@ -42,15 +60,26 @@ ExecStart=
 ExecStart=/usr/bin/kubelet \$KUBELET_KUBECONFIG_ARGS \$KUBELET_SYSTEM_PODS_ARGS \$KUBELET_NETWORK_ARGS \$KUBELET_DNS_ARGS \$KUBELET_AUTHZ_ARGS \$KUBELET_CADVISOR_ARGS \$KUBELET_CGROUP_ARGS \$KUBELET_CERTIFICATE_ARGS \$KUBELET_EXTRA_ARGS
 EOF
 ```
+Then, we initialize the kubernetes service with the configuration above, type:  
+```
+kubeadm init --config ../conf/kubeadm.yaml
+```
+And Start the services:
+```
+mkdir ~/.kube
+cp /etc/kubernetes/admin.conf ~/.kube/config
+kubectl apply -f ../conf/net/calico.yaml
+kubectl taint nodes --all node-role.kubernetes.io/master
+```
+The status of the services will be displayed below(in snap part)
 # DNS & Dashboard
 ## Dashboard
-First, we need to get the 'kubernetes-dashboard.yaml' and 'dashboard-admin.yaml' . (Some modifications are needed)
+First, we need to get the 'kubernetes-dashboard.yaml' and 'dashboard-admin.yaml' . (Some modifications are needed)  
 And type:
 ```
 kubectl  -n kube-system create -f .
 ```
-And we've started the dashboard service. Visit https://127.0.0.1:32000, and we need to  
-input token to sign in. By typing:
+And we've started the dashboard service. Visit https://127.0.0.1:32000, and we need to input token to sign in. By typing:
 ```
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep kubernetes-dashboard-token|awk '{print $1}')|grep token:|awk "{print $2}"
 

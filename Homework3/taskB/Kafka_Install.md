@@ -9,7 +9,7 @@ Unzip the zookeeper-3.4.13.tar.gz file and config the 'zoo.cfg' as following:
 ![Image0](pics/zkcfg.jpg)
 ## Step 2 
 Add env varieties as following:  
-![Image01](pics/env.jpg)
+![Image01](pics/env.jpg) 
 ## Step 3
 After solving some problems(see the 'Some problems & solutions' part)  
 type "zkServer", and we have started the zookeeper service:  

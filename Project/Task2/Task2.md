@@ -87,7 +87,7 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 ```
 And we've got the token:
 ![Img](pics/token.jpg)
-After inputing the token and signing in, we can see the dashboard:
+After inputting the token and signing in, we can see the dashboard:
 ![Img](pics/dashboard.jpg)
 ## DNS
 After all the above, we can see if DNS server works well. By typing:

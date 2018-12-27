@@ -44,6 +44,11 @@ EOF
 ```
 # DNS & Dashboard
 ## Dashboard
+First, we need to get the 'kubernetes-dashboard.yaml' and 'dashboard-admin.yaml' . (Some modifications are needed)
+And type:
+```
+kubectl  -n kube-system create -f .
+```
 And we've started the dashboard service. Visit https://127.0.0.1:32000, and we need to  
 input token to sign in. By typing:
 ```
@@ -54,6 +59,19 @@ And we've got the token:
 ![Img](pics/token.jpg)
 After inputing the token and signing in, we can see the dashboard:
 ![Img](pics/dashboard.jpg)
+## DNS
+After all the above, we can see if DNS server works well. By typing:
+```
+kubectl run curl --image=radial/busyboxplus:curl -i --tty
+```
+And we got the following output:
+![Img](pics/dns1.jpg)
+Then we type:
+```
+nslookup kubernetes.default
+```
+And the DNS server works well with the following output:
+![Img](pics/dns2.jpg)
 # Snapshot
 After all the above, we've got a kubernetes networkd with one master node.  
 ```

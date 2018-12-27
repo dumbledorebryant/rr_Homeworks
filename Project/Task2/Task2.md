@@ -16,7 +16,14 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
 ```
-## Configuration for kubeadm
+Finally, we need to install docker.  
+For me, I installed docker with apt-get:
+```
+sudo apt-get install docker
+sudo apt-get install docker.io
+```
+## Install kubeadm and kubelet
+### Configuration for kubeadm
 We just need to write configuration into kubeadm.conf, just as following:
 ```
 cat <<EOF > /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
@@ -33,7 +40,16 @@ ExecStart=
 ExecStart=/usr/bin/kubelet \$KUBELET_KUBECONFIG_ARGS \$KUBELET_SYSTEM_PODS_ARGS \$KUBELET_NETWORK_ARGS \$KUBELET_DNS_ARGS \$KUBELET_AUTHZ_ARGS \$KUBELET_CADVISOR_ARGS \$KUBELET_CGROUP_ARGS \$KUBELET_CERTIFICATE_ARGS \$KUBELET_EXTRA_ARGS
 EOF
 ```
-``` 
-dsada
-``` 
-![Img](pics/1.jpg)
+# Snapshot
+After all the above, we've got a kubernetes networkd with one master node.  
+```
+kubectl get svc  --all-namespaces
+```
+We can see that the following service has started.    
+![Img](pics/svc.jpg)
+Also, by typing:   
+```
+kubectl get pod  -o wide  --all-namespaces
+```
+We can see the address and status of the following pods:
+![Img](pics/pod.jpg)

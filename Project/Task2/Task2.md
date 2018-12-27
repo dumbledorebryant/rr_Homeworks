@@ -60,7 +60,8 @@ ExecStart=
 ExecStart=/usr/bin/kubelet \$KUBELET_KUBECONFIG_ARGS \$KUBELET_SYSTEM_PODS_ARGS \$KUBELET_NETWORK_ARGS \$KUBELET_DNS_ARGS \$KUBELET_AUTHZ_ARGS \$KUBELET_CADVISOR_ARGS \$KUBELET_CGROUP_ARGS \$KUBELET_CERTIFICATE_ARGS \$KUBELET_EXTRA_ARGS
 EOF
 ```
-Then, we initialize the kubernetes service with the configuration above, type:  
+### Start service on master node
+Firstm, we need to initialize the kubernetes service with the configuration above, type:  
 ```
 kubeadm init --config ../conf/kubeadm.yaml
 ```

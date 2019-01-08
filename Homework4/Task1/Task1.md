@@ -25,34 +25,47 @@ c. 创建一个“Maven项目”的job
 
 1. Frontend
    + 下载nginx镜像
-  `$ docker pull nginx`
+  ```
+  $ docker pull nginx
+  ```
    + 配置docker-compose，创建并编辑docker-compose.yml
    + 创建并编辑 nginx.conf 以支持react-router
    + 创建并启动容器
-   `$ docker-compose up -d`
+   ```
+   $ docker-compose up -d
+   ```
 
 2. Database
    + 下载mysql镜像
    + 启动镜像
-  `$ docker run -name mysqleatornot -e MYSQL_ROOT_PASSWORD=LiLingHui981001 -p 3306:3306 -d mysql:5.7`
+  ```
+  $ docker run -name mysqleatornot -e MYSQL_ROOT_PASSWORD=LiLingHui981001 -p 3306:3306 -d mysql:5.7
+  ```
    + 进入容器
-  `$ docker exec -it mysqleatornot /bin/bash`
+  ```
+  $ docker exec -it mysqleatornot /bin/bash
+  ```
    + 登陆mysql，配置远程登录授权
    + 将数据库的.sql脚本导入容器
 
 3. Backend
    + 创建并编辑Dockerfile
    + 将Dockerfile和打包好的docker_spring_boot.jar放入同一文件夹，cd到该文件夹中创建镜像
-`$ docker build -t springboot/eatornot .`
+```$ docker build -t springboot/eatornot .
+```
    + 启动容器并连接mysql的容器
-`$ docker run -d -p 8080:8080 --link mysqleatornot:db springboot/eatornot`
+```
+$ docker run -d -p 8080:8080 --link mysqleatornot:db springboot/eatornot
+```
 
 ## Step3: Automatically build images after a PR
 
 1. 在docker中声称SSH密钥，并在jenkins中配置SSH
 ![70%](jenkins_ssh.png) 
 2. 运行一个private docker registry
-`$ docker run -itd -p 5000:5000 -v <some_host_path>:/var/lib/registry --name registry registry:2.5`
+```
+$ docker run -itd -p 5000:5000 -v <some_host_path>:/var/lib/registry --name registry registry:2.5
+```
 
 3. Frontend
 添加Post-build Actions
@@ -67,3 +80,4 @@ $ /usr/local/bin/docker-compose up -d
 ```
 $ cd <full remote directory path>
 $ sh docker.sh $BUILD_NUMBER $GIT_COMMIT
+```

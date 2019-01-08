@@ -24,27 +24,27 @@ c. 创建一个“Maven项目”的job
 ## Step2: Prepare a web application build container images
 
 1. Frontend
-   a. 下载nginx镜像
+   + 下载nginx镜像
   `$ docker pull nginx`
-   b. 配置docker-compose，创建并编辑docker-compose.yml
-   c. 创建并编辑 nginx.conf 以支持react-router
-   d. 创建并启动容器
+   + 配置docker-compose，创建并编辑docker-compose.yml
+   + 创建并编辑 nginx.conf 以支持react-router
+   + 创建并启动容器
    `$ docker-compose up -d`
 
 2. Database
-  a. 下载mysql镜像
-  b. 启动镜像
+   + 下载mysql镜像
+   + 启动镜像
   `$ docker run -name mysqleatornot -e MYSQL_ROOT_PASSWORD=LiLingHui981001 -p 3306:3306 -d mysql:5.7`
-  c. 进入容器
+   + 进入容器
   `$ docker exec -it mysqleatornot /bin/bash`
-  d. 登陆mysql，配置远程登录授权
-  e. 将数据库的.sql脚本导入容器
+   + 登陆mysql，配置远程登录授权
+   + 将数据库的.sql脚本导入容器
 
 3. Backend
-a. 创建并编辑Dockerfile
-b. 将Dockerfile和打包好的docker_spring_boot.jar放入同一文件夹，cd到该文件夹中创建镜像
+   + 创建并编辑Dockerfile
+   + 将Dockerfile和打包好的docker_spring_boot.jar放入同一文件夹，cd到该文件夹中创建镜像
 `$ docker build -t springboot/eatornot .`
-c. 启动容器并连接mysql的容器
+   + 启动容器并连接mysql的容器
 `$ docker run -d -p 8080:8080 --link mysqleatornot:db springboot/eatornot`
 
 ## Step3: Automatically build images after a PR

@@ -51,7 +51,8 @@ c. 创建一个“Maven项目”的job
 3. Backend
    + 创建并编辑Dockerfile
    + 将Dockerfile和打包好的docker_spring_boot.jar放入同一文件夹，cd到该文件夹中创建镜像
-```$ docker build -t springboot/eatornot .
+```
+$ docker build -t springboot/eatornot .
 ```
    + 启动容器并连接mysql的容器
 ```

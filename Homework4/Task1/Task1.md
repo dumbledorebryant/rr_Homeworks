@@ -24,7 +24,7 @@ c. 创建一个“Maven项目”的job
 ## Step2: Prepare a web application build container images
 
 1. Frontend
-   + 下载nginx镜像
+  + 下载nginx镜像
   ```
   $ docker pull nginx
   ```
@@ -36,21 +36,21 @@ c. 创建一个“Maven项目”的job
    ```
 
 2. Database
-   + 下载mysql镜像
-   + 启动镜像
-  ```
+ + 下载mysql镜像
+ + 启动镜像
+```
   $ docker run -name mysqleatornot -e MYSQL_ROOT_PASSWORD=LiLingHui981001 -p 3306:3306 -d mysql:5.7
-  ```
+```
    + 进入容器
-  ```
+```
   $ docker exec -it mysqleatornot /bin/bash
-  ```
+```
    + 登陆mysql，配置远程登录授权
    + 将数据库的.sql脚本导入容器
 
 3. Backend
-   + 创建并编辑Dockerfile
-   + 将Dockerfile和打包好的docker_spring_boot.jar放入同一文件夹，cd到该文件夹中创建镜像
+  + 创建并编辑Dockerfile
+  + 将Dockerfile和打包好的docker_spring_boot.jar放入同一文件夹，cd到该文件夹中创建镜像
 ```
 $ docker build -t springboot/eatornot .
 ```

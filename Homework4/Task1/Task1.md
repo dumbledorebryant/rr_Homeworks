@@ -25,20 +25,20 @@ c. 创建一个“Maven项目”的job
 
 1. Frontend
    a. 下载nginx镜像
-`$ docker pull nginx`
+  `$ docker pull nginx`
    b. 配置docker-compose，创建并编辑docker-compose.yml
    c. 创建并编辑 nginx.conf 以支持react-router
    d. 创建并启动容器
-`$ docker-compose up -d`
+   `$ docker-compose up -d`
 
 2. Database
-a. 下载mysql镜像
-b. 启动镜像
-`$ docker run -name mysqleatornot -e MYSQL_ROOT_PASSWORD=LiLingHui981001 -p 3306:3306 -d mysql:5.7`
-c. 进入容器
-`$ docker exec -it mysqleatornot /bin/bash`
-d. 登陆mysql，配置远程登录授权
-e. 将数据库的.sql脚本导入容器
+  a. 下载mysql镜像
+  b. 启动镜像
+  `$ docker run -name mysqleatornot -e MYSQL_ROOT_PASSWORD=LiLingHui981001 -p 3306:3306 -d mysql:5.7`
+  c. 进入容器
+  `$ docker exec -it mysqleatornot /bin/bash`
+  d. 登陆mysql，配置远程登录授权
+  e. 将数据库的.sql脚本导入容器
 
 3. Backend
 a. 创建并编辑Dockerfile

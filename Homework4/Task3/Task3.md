@@ -36,6 +36,10 @@ and
 ```
 kubectl get svc
 ```
+Also, we can see the running condition of our program by typing:
+```
+docker ps
+```
 (Detailed information can be seen from the video in this folder)
 
 ## Visit our web application
